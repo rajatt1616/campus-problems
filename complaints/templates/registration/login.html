@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Sign in · CampusComplaint{% endblock %}
+{% block auth_content %}
+<main class="flex min-h-screen items-center justify-center px-4">
+    <div class="w-full max-w-[400px]">
+        <div class="mb-8 text-center">
+            <div class="mb-4 flex justify-center">
+                <img src="{% static 'img/logo-mark.svg' %}" alt="CampusComplaint" class="h-12 w-12 rounded-lg">
+            </div>
+            <h1 class="text-3xl font-bold text-ink">CampusComplaint</h1>
+            <p class="mt-2 text-base text-muted">File. Assign. Resolve. Verify.</p>
+        </div>
+
+        <div class="rounded-lg border border-border bg-card p-6">
+            <h2 class="mb-6 text-lg font-semibold text-ink">Sign in</h2>
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+
+                {% if form.non_field_errors %}
+                <div class="rounded-lg border border-danger/30 bg-danger/5 px-4 py-3 text-sm font-medium text-danger">
+                    {{ form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                <div>
+                    <label for="{{ form.username.id_for_label }}" class="mb-1.5 block text-sm font-semibold text-ink">College email</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                    <div class="mt-1.5 text-xs font-semibold text-danger">{{ form.username.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.password.id_for_label }}" class="mb-1.5 block text-sm font-semibold text-ink">Password</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                    <div class="mt-1.5 text-xs font-semibold text-danger">{{ form.password.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit"
+                        class="h-10 w-full rounded-lg bg-primary px-4 text-sm font-semibold text-white transition hover:bg-primary-hover">Sign in</button>
+            </form>
+        </div>
+
+        <div class="mt-6 rounded-lg border border-border bg-card p-4 text-xs text-muted">
+            <div class="mb-2 font-semibold text-ink">Demo accounts</div>
+            <div class="space-y-1">
+                <div>Student — rajat@student.srmist.edu / student123</div>
+                <div>Admin — admin@srmist.edu / admin123</div>
+                <div>Department — mess@srmist.edu / dept123</div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

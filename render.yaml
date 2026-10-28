@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: campuscomplaint
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn campuscomplaint.wsgi
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_ALLOWED_HOSTS
+        generateValue: false
+      - key: DJANGO_SECRET_KEY
+        generateValue: true

@@ -1,0 +1,1 @@
+<span class="inline-flex h-[22px] items-center rounded-lg bg-surface px-2 text-xs font-semibold {% if status == 'CLOSED' %}text-success{% elif status == 'RESOLVED' or status == 'IN_PROGRESS' %}text-warning{% elif status == 'REOPENED' %}text-accent{% else %}text-primary{% endif %}" style="white-space: nowrap">{{ label }}</span>
